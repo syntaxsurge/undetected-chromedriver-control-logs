@@ -1,7 +1,7 @@
 # Control logs of undetected_chromedriver
 
 You can see the original project here:
-[undetected-chromedriver](https://pypi.org/project/undetected-chromedriver/)
+[undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver)
 
 ## Installation
 
