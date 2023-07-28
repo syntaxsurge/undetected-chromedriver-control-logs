@@ -1,4 +1,4 @@
-# Control logs of undetected_chromedriver
+# Control logs of undetected-chromedriver
 
 You can see the original project here:
 [undetected-chromedriver](https://github.com/ultrafunkamsterdam/undetected-chromedriver)
