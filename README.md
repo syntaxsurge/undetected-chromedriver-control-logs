@@ -7,8 +7,14 @@ You can see the original project here:
 
 You can install the modified package directly from GitHub using pip:
 
-```
+#### For Windows:
+```bash
 pip install git+https://github.com/syntaxsurge/undetected-chromedriver-control-logs.git
+```
+
+#### For Linux:
+```bash
+pip3 install git+https://github.com/syntaxsurge/undetected-chromedriver-control-logs.git
 ```
 
 ## Usage
