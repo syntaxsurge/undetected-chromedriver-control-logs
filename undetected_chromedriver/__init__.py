@@ -109,11 +109,8 @@ class Chrome(selenium.webdriver.chrome.webdriver.WebDriver):
         browser_executable_path=None,
         port=0,
         enable_cdp_events=False,
-        # service_args=None,
-        # service_creationflags=None,
         desired_capabilities=None,
         advanced_elements=False,
-        # service_log_path=None,
         keep_alive=True,
         log_level=0,
         headless=False,
@@ -181,13 +178,6 @@ class Chrome(selenium.webdriver.chrome.webdriver.WebDriver):
             <WebElement(<a class="mobile-show-inline-block mc-update-infos init-ok" href="#" id="main-cat-switcher-mobile">)>
 
             note: when retrieving large amounts of elements ( example: find_elements_by_tag("*") ) and print them, it does take a little more time.
-
-
-        service_log_path: str, optional, default: None
-             path to log information from the driver.
-
-        keep_alive: bool, optional, default: True
-             Whether to configure ChromeRemoteConnection to use HTTP keep-alive.
 
         log_level: int, optional, default: adapts to python global log level
 
@@ -390,8 +380,9 @@ class Chrome(selenium.webdriver.chrome.webdriver.WebDriver):
                 elif self.patcher.version_main >= 108:
                     options.add_argument("--headless=new")
             except:
-                logger.warning("could not detect version_main."
-                               "therefore, we are assuming it is chrome 108 or higher")
+                if log_level <= 2:
+                    logger.warning(
+                        "could not detect version_main. therefore, we are assuming it is chrome 108 or higher")
                 options.add_argument("--headless=new")
 
         options.add_argument("--window-size=1920,1080")
@@ -617,34 +608,7 @@ class Chrome(selenium.webdriver.chrome.webdriver.WebDriver):
 
         self.get = get_wrapped
 
-    # def _get_cdc_props(self):
-    #     return self.execute_script(
-    #         """
-    #         let objectToInspect = window,
-    #             result = [];
-    #         while(objectToInspect !== null)
-    #         { result = result.concat(Object.getOwnPropertyNames(objectToInspect));
-    #           objectToInspect = Object.getPrototypeOf(objectToInspect); }
-    #
-    #         return result.filter(i => i.match(/^([a-zA-Z]){27}(Array|Promise|Symbol)$/ig))
-    #         """
-    #     )
-    #
-    # def _hook_remove_cdc_props(self):
-    #     self.execute_cdp_cmd(
-    #         "Page.addScriptToEvaluateOnNewDocument",
-    #         {
-    #             "source": """
-    #                 let objectToInspect = window,
-    #                     result = [];
-    #                 while(objectToInspect !== null)
-    #                 { result = result.concat(Object.getOwnPropertyNames(objectToInspect));
-    #                   objectToInspect = Object.getPrototypeOf(objectToInspect); }
-    #                 result.forEach(p => p.match(/^([a-zA-Z]){27}(Array|Promise|Symbol)$/ig)
-    #                                     &&delete window[p]&&console.log('removed',p))
-    #                 """
-    #         },
-    #     )
+
 
     def get(self, url):
         # if self._get_cdc_props():
